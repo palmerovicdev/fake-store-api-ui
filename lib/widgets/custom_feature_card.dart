@@ -98,6 +98,7 @@ class _CustomFeatureCardState extends State<CustomFeatureCard> {
                       widget.description,
                       style: themeData.textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w400,
+                        fontSize: 16,
                       ),
                       textAlign: TextAlign.center,
                     ),

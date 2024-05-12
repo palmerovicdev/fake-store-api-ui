@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:fake_store_api_ui/theme/presentation/widgets/brightness_selector_widget.dart';
 import 'package:fake_store_api_ui/widgets/custom_feature_card.dart';
 import 'package:fake_store_api_ui/widgets/custom_feature_description_widget.dart';
@@ -33,44 +34,79 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Center(
           child: SizedBox(
-            width: 1300,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 80),
-                const TittleText(
-                  text: 'Fake Store API for fronted development',
-                ),
-                const SizedBox(height: 24),
-                const TextCodeBlockWidget(
-                  text: 'A storefront API that emulates backend responses featuring \ntwo primary entities: `Product` and '
-                      '`Category`',
-                  textStyle: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w900,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 50),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
+                Stack(
                   children: [
-                    buildDocsButton(),
-                    const SizedBox(width: 24),
-                    buildApiSwaggerButton(context),
+                    Image.asset(
+                      'assets/image-network.jpg',
+                      width: MediaQuery.of(context).size.width,
+                      height: 380,
+                      fit: BoxFit.cover,
+                    ),
+                    const SizedBox(height: 80),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 120),
+                      child: Center(
+                        child: DefaultTextStyle(
+                          style: const TextStyle(
+                            fontSize: 80.0,
+                            fontFamily: 'Horizon',
+                          ),
+                          child: AnimatedTextKit(
+                            repeatForever: true,
+                            animatedTexts: [
+                              TyperAnimatedText(
+                                'FOR YOUR FRONT APK',
+                                speed: const Duration(milliseconds: 70),
+                                textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              TyperAnimatedText(
+                                'MOCK YOUR DATA',
+                                speed: const Duration(milliseconds: 70),
+                                textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              TyperAnimatedText(
+                                'TEST YOUR FRONT',
+                                speed: const Duration(milliseconds: 70),
+                                textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    Positioned(
+                      bottom: 24,
+                      left: MediaQuery.of(context).size.width / 2 - 120,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          buildDocsButton(),
+                          const SizedBox(width: 24),
+                          buildApiSwaggerButton(context),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-                const SizedBox(height: 70),
-                Image.asset(
-                  'assets/image-network.jpg',
-                  width: 1300,
-                  height: 700,
-                  fit: BoxFit.cover,
-                ),
-                const SizedBox(height: 100),
+                const SizedBox(height: 50),
                 const TittleText(
-                  text: 'There are cases where you need to use an API to get mock some data for your front-end application.',
+                  text: 'There are cases where you need to use an API to get mock some data.',
                   size: 40,
                 ),
                 const SizedBox(height: 24),
@@ -82,36 +118,176 @@ class HomePage extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 80),
+                const SizedBox(height: 60),
                 buildFeatures(context),
                 const SizedBox(height: 70),
-                Divider(
-                  thickness: 1,
-                  indent: 10,
-                  endIndent: 0,
-                  color: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
+                Center(
+                  child: SizedBox(
+                    width: 1300,
+                    child: Divider(
+                      thickness: 1,
+                      indent: 10,
+                      endIndent: 0,
+                      color: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 50),
                 const TittleText(
-                  text: 'Examples of curL in Postman',
-                  size: 40,
+                  text: 'Examples of curL in Jetbrains IDEs',
+                  size: 48,
                 ),
-                const SizedBox(height: 40),
-                const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomFeatureDescriptionWidget(
-                      smallTittle: 'Get a list of product',
-                      tittle: 'List all the products',
-                      description: 'This curL will allow you to list all the products in the fake store.',
-                      features: ['List all the products in database', 'Provide a page and lot for implement pagination'],
-                    ),
-                    TextCodeBlockWidget(
-                      text: '',
-                    ),
-                  ],
+                const SizedBox(height: 90),
+                SizedBox(
+                  width: 1200,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const CustomFeatureDescriptionWidget(
+                        smallTittle: 'Get a list of product',
+                        tittle: 'List all the products',
+                        description: 'This curL will allow you to list all the products in the fake store.',
+                        features: ['List all the products in database', 'Provide a page and lot for implement pagination'],
+                        maxWidth: 500,
+                      ),
+                      const Expanded(child: SizedBox()),
+                      Material(
+                        elevation: 8.0,
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: const SizedBox(
+                          width: 590,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 32.0),
+                            child: TextCodeBlockWidget(
+                              text: '```'
+                                  '    '
+                                  '    ###\n'
+                                  '    GET http://localhost:8080/product/get\n'
+                                  '    Content-Type: application/json\n'
+                                  '    \n'
+                                  '    {\n'
+                                  '       "page": 1,\n'
+                                  '       "size": 10,\n'
+                                  '       "filter": "name"\n'
+                                  '    },\n'
+                                  '```',
+                              textStyle: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+                const SizedBox(height: 70),
+                SizedBox(
+                  width: 1200,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Material(
+                        elevation: 8.0,
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: const SizedBox(
+                          width: 590,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 32.0),
+                            child: TextCodeBlockWidget(
+                              text: '```'
+                                  '    '
+                                  '    ###\n'
+                                  '    GET http://localhost:8080/product/get\n'
+                                  '    Content-Type: application/json\n'
+                                  '    \n'
+                                  '    {\n'
+                                  '       "page": 1,\n'
+                                  '       "size": 10,\n'
+                                  '       "filter": "name"\n'
+                                  '    },\n'
+                                  '```',
+                              textStyle: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Expanded(child: SizedBox()),
+                      const CustomFeatureDescriptionWidget(
+                        smallTittle: 'Get a list of product',
+                        tittle: 'List all the products',
+                        description: 'This curL will allow you to list all the products in the fake store.',
+                        features: ['List all the products in database', 'Provide a page and lot for implement pagination'],
+                        maxWidth: 500,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 70),
+                SizedBox(
+                  width: 1200,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const CustomFeatureDescriptionWidget(
+                        smallTittle: 'Get a list of product',
+                        tittle: 'List all the products',
+                        description: 'This curL will allow you to list all the products in the fake store.',
+                        features: ['List all the products in database', 'Provide a page and lot for implement pagination'],
+                        maxWidth: 500,
+                      ),
+                      const Expanded(child: SizedBox()),
+                      Material(
+                        elevation: 8.0,
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: const SizedBox(
+                          width: 590,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 32.0),
+                            child: TextCodeBlockWidget(
+                              text: '```'
+                                  '    '
+                                  '    ###\n'
+                                  '    GET http://localhost:8080/product/get\n'
+                                  '    Content-Type: application/json\n'
+                                  '    \n'
+                                  '    {\n'
+                                  '       "page": 1,\n'
+                                  '       "size": 10,\n'
+                                  '       "filter": "name"\n'
+                                  '    },\n'
+                                  '```',
+                              textStyle: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 70),
+                Center(
+                  child: SizedBox(
+                    width: 1300,
+                    child: Divider(
+                      thickness: 1,
+                      indent: 10,
+                      endIndent: 0,
+                      color: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 50),
               ],
             ),
           ),
@@ -139,8 +315,7 @@ class HomePage extends StatelessWidget {
             color: Theme.of(context).colorScheme.primary,
           ),
           name: 'All CRUD Operations',
-          description:
-              'The API provides full support for all CRUD (Create, Read, Update, Delete) operations on both Product and Category entities within the system, enabling comprehensive data management capabilities.',
+          description: 'Full support for all CRUD (Create, Read, Update, Delete) operations on both Product and Category entities within the system.',
         ),
         CustomFeatureCard(
           size: const Size(
@@ -153,8 +328,8 @@ class HomePage extends StatelessWidget {
             color: Theme.of(context).colorScheme.primary,
           ),
           name: 'Pagination Feature',
-          description:
-              'The API supports pagination for both Product and Category entities, allowing for the efficient retrieval of large datasets in smaller, more manageable chunks.',
+          description: 'Pagination for both Product and Category entities, allowing for the efficient retrieval of large datasets in smaller, more '
+              'manageable chunks.',
         ),
         CustomFeatureCard(
           size: const Size(
@@ -167,8 +342,7 @@ class HomePage extends StatelessWidget {
             color: Theme.of(context).colorScheme.primary,
           ),
           name: 'Auth with JWT',
-          description:
-              'The API supports authentication using JSON Web Tokens (JWT), providing a secure mechanism for verifying the identity of users and protecting sensitive data within the system.',
+          description: 'Authentication using JSON Web Tokens (JWT), providing a secure mechanism for verifying the identity of users.',
         ),
         CustomFeatureCard(
           size: const Size(
@@ -181,8 +355,8 @@ class HomePage extends StatelessWidget {
             color: Theme.of(context).colorScheme.primary,
           ),
           name: 'Rest API Feature',
-          description: 'The API follows REST-ful principles, providing a standardized approach to designing web services that are scalable, '
-              'maintainable, and interoperable with other systems.',
+          description: 'REST-ful principles, providing a standardized approach to designing web services that are scalable and '
+              'interoperable with other systems.',
         ),
         CustomFeatureCard(
           size: const Size(
@@ -195,8 +369,7 @@ class HomePage extends StatelessWidget {
             color: Theme.of(context).colorScheme.primary,
           ),
           name: 'Products Images',
-          description:
-              'The API provides images for each product, allowing front-end developers to display product images alongside their respective details and descriptions.',
+          description: 'Images for each product, allowing front-end developers to display product images.',
         ),
         CustomFeatureCard(
           size: const Size(
@@ -210,7 +383,8 @@ class HomePage extends StatelessWidget {
           ),
           name: "Postman and Jetbrains curL",
           description:
-              'The API provides a Postman collection and Jetbrains curL commands for testing and interacting with the API, enabling developers to explore its capabilities and functionality.',
+              'Postman, Jetbrains curL commands for testing and interacting with the API, enabling developers to explore its capabilities and '
+              'functionality.',
         ),
       ],
     );
@@ -243,7 +417,7 @@ class HomePage extends StatelessWidget {
         child: Text(
           'API',
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 24,
             fontWeight: FontWeight.w900,
           ),
         ),
@@ -275,7 +449,7 @@ class HomePage extends StatelessWidget {
         child: Text(
           'Docs',
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 24,
             fontWeight: FontWeight.w900,
           ),
         ),

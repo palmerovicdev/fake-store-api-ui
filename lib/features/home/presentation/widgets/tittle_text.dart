@@ -5,10 +5,14 @@ class TittleText extends StatelessWidget {
     super.key,
     required this.text,
     this.size,
+    this.textAlign,
+    this.fontFamily,
   });
 
   final String text;
   final double? size;
+  final TextAlign? textAlign;
+  final String? fontFamily;
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +20,10 @@ class TittleText extends StatelessWidget {
       text,
       style: Theme.of(context).textTheme.headlineLarge?.copyWith(
             fontWeight: FontWeight.w900,
-            fontFamily: 'Anton',
-            fontSize: size?? 56,
+            fontFamily: fontFamily ?? 'Anton',
+            fontSize: size ?? 56,
           ),
-      textAlign: TextAlign.center,
+      textAlign: textAlign ?? TextAlign.center,
     );
   }
 }

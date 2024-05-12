@@ -40,7 +40,7 @@ class _TextCodeBlockWidgetState extends State<TextCodeBlockWidget> {
             int codeBlockLength = 0;
             for (var char in codeBlockString) {
               if (char == '`' && codeBlockString.skip(codeBlockLength + 1).take(2).join() == '``') {
-                var codeBlock = codeBlockString.take(codeBlockLength).join();
+                var codeBlock = codeBlockString.take(codeBlockLength + 1).join();
                 spans.add(WidgetSpan(child: buildCodeBlock(context, codeBlock)));
                 i += codeBlockLength + 5;
                 break;
@@ -140,21 +140,24 @@ class _TextCodeBlockWidgetState extends State<TextCodeBlockWidget> {
                   ),
                 ),
               ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SelectableText(
-                    line.substring(3, line.length - 3),
-                    style: widget.textStyle?.copyWith(
-                          color: themeData.colorScheme.secondary,
-                        ) ??
-                        textTheme.bodyLarge?.copyWith(
-                          color: themeData.colorScheme.secondary,
-                          fontSize: 12,
-                        ),
-                  ),
-                  const SizedBox(width: 42),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(top: 32, right: 50),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SelectableText(
+                      line.substring(3, line.length - 3),
+                      style: widget.textStyle?.copyWith(
+                            color: themeData.colorScheme.secondary,
+                          ) ??
+                          textTheme.bodyLarge?.copyWith(
+                            color: themeData.colorScheme.secondary,
+                            fontSize: 12,
+                          ),
+                    ),
+                    const SizedBox(width: 42),
+                  ],
+                ),
               ),
             ],
           ),

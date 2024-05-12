@@ -18,13 +18,13 @@ class CustomFeatureDescriptionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: BoxConstraints(maxWidth: maxWidth ?? 400),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (smallTittle != null)
-            Text(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (smallTittle != null)
+          Container(
+            constraints: BoxConstraints(maxWidth: maxWidth ?? 400),
+            child: Text(
               smallTittle!,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.primary,
@@ -33,51 +33,62 @@ class CustomFeatureDescriptionWidget extends StatelessWidget {
                 fontFamily: 'ShadowsIntoLight',
               )
             ),
-          const SizedBox(height: 6),
-          Text(
+          ),
+        const SizedBox(height: 6),
+        Container(
+          constraints: BoxConstraints(maxWidth: maxWidth ?? 400),
+          child: Text(
             tittle,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
-                  fontSize: 32,
+                  fontSize: 28,
                 ),
           ),
-          const SizedBox(height: 8),
-          Text(
+        ),
+        const SizedBox(height: 8),
+        Container(
+          constraints: BoxConstraints(maxWidth: maxWidth ?? 400),
+          child: Text(
             description,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
-                  fontSize: 16,
+                  fontSize: 22,
                 ),
           ),
-          if (features != null)
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: features!
-                  .map(
-                    (feature) => Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.check,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
+        ),
+        if (features != null)
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: features!
+                .map(
+                  (feature) => Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.check,
+                          color: Theme.of(context).colorScheme.primary,
+                          size: 22,
+                        ),
+                        const SizedBox(width: 8),
+                        Container(
+                          constraints: BoxConstraints(maxWidth: maxWidth ?? 400),
+                          child: Text(
                             feature,
                             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                   color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
-                                  fontSize: 16,
+                                  fontSize: 22,
                                 ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  )
-                  .toList(),
-            ),
-        ],
-      ),
+                  ),
+                )
+                .toList(),
+          ),
+      ],
     );
   }
 }
