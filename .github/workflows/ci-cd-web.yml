@@ -11,27 +11,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Clone Flutter action repo
-      - name: Clone repository
-        uses: actions/checkout@v4
-
-      # Setup Flutter
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-
-      # Show flutter version
-      - run: flutter --version
-
-      # Install Flutter dependencies
-      - name: Get dependencies
-        run: flutter pub get
-
-      # Analizing the project
-      - name: Analyze project
-        run: flutter analyze
-
-      # Build web project
-      - name: Build web project
-        run: flutter build web
+    - name: Clone repository
+      uses: actions/checkout@v4
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: stable
+    - run: flutter pub get
+    - run: flutter test
+    - run: flutter build web
