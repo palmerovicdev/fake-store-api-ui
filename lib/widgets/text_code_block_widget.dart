@@ -83,83 +83,95 @@ class _TextCodeBlockWidgetState extends State<TextCodeBlockWidget> {
         top: 8.0,
         bottom: 8.0,
       ),
-      child: Container(
-        decoration: BoxDecoration(
-          color: themeData.colorScheme.secondary.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(4),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(
-            bottom: 8.0,
-            right: 8.0,
-            top: 8.0,
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Container(
+          decoration: BoxDecoration(
+            color: themeData.colorScheme.secondary.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(4),
           ),
-          child: Stack(
-            children: [
-              Positioned(
-                right: 4,
-                top: 4,
-                child: MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  onEnter: (_) => setState(() => isHover = true),
-                  onExit: (_) => setState(() => isHover = false),
-                  child: Material(
-                    elevation: isHover ? 4 : 0,
-                    borderRadius: BorderRadius.circular(4),
-                    child: GestureDetector(
-                      onTap: () {
-                        Clipboard.setData(ClipboardData(text: line.substring(3, line.length - 3)));
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Copied to clipboard'),
-                            duration: Duration(milliseconds: 500),
-                          ),
-                        );
-                      },
-                      child: AnimatedContainer(
-                        decoration: BoxDecoration(
-                          color: themeData.colorScheme.secondary.withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        duration: const Duration(milliseconds: 200),
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text(
-                            'Copy',
-                            style: widget.textStyle?.copyWith(
-                                  color: themeData.colorScheme.secondary,
-                                ) ??
-                                textTheme.bodyLarge?.copyWith(
-                                  color: themeData.colorScheme.secondary,
-                                  fontSize: 12,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              bottom: 8.0,
+              right: 8.0,
+              top: 8.0,
+            ),
+            child: Stack(
+              children: [
+                Positioned(
+                  right: 4,
+                  top: 4,
+                  child: MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    onEnter: (_) => setState(() => isHover = true),
+                    onExit: (_) => setState(() => isHover = false),
+                    child: Material(
+                      elevation: isHover ? 4 : 0,
+                      borderRadius: BorderRadius.circular(4),
+                      child: GestureDetector(
+                        onTap: () {
+                          Clipboard.setData(ClipboardData(text: line.substring(3, line.length - 3)));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Center(
+                                child: Text(
+                                  '',
+                                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context).colorScheme.onSecondary
+                                  ),
                                 ),
+                              ),
+                              duration: const Duration(milliseconds: 500),
+                            ),
+                          );
+                        },
+                        child: AnimatedContainer(
+                          decoration: BoxDecoration(
+                            color: themeData.colorScheme.secondary.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          duration: const Duration(milliseconds: 200),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text(
+                              'Copy',
+                              style: widget.textStyle?.copyWith(
+                                    color: themeData.colorScheme.secondary,
+                                  ) ??
+                                  textTheme.bodyLarge?.copyWith(
+                                    color: themeData.colorScheme.secondary,
+                                    fontSize: 12,
+                                  ),
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 32, right: 50),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SelectableText(
-                      line.substring(3, line.length - 3),
-                      style: widget.textStyle?.copyWith(
-                            color: themeData.colorScheme.secondary,
-                          ) ??
-                          textTheme.bodyLarge?.copyWith(
-                            color: themeData.colorScheme.secondary,
-                            fontSize: 12,
-                          ),
-                    ),
-                    const SizedBox(width: 42),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 32, right: 50),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SelectableText(
+                        line.substring(3, line.length - 3),
+                        style: widget.textStyle?.copyWith(
+                              color: themeData.colorScheme.secondary,
+                            ) ??
+                            textTheme.bodyLarge?.copyWith(
+                              color: themeData.colorScheme.secondary,
+                              fontSize: 12,
+                            ),
+                      ),
+                      const SizedBox(width: 42),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

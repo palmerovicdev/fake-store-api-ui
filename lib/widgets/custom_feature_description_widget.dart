@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'custom_featured_text.dart';
+
 class CustomFeatureDescriptionWidget extends StatelessWidget {
   const CustomFeatureDescriptionWidget({
     super.key,
@@ -24,15 +26,7 @@ class CustomFeatureDescriptionWidget extends StatelessWidget {
         if (smallTittle != null)
           Container(
             constraints: BoxConstraints(maxWidth: maxWidth ?? 400),
-            child: Text(
-              smallTittle!,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'ShadowsIntoLight',
-              )
-            ),
+            child: CustomFeaturedText(smallTittle: smallTittle),
           ),
         const SizedBox(height: 6),
         Container(

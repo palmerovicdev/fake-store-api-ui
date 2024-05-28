@@ -14,7 +14,7 @@ class ThemeSelectorInitial extends ThemeSelectorState {
   final int colorSeed;
 
   const ThemeSelectorInitial({
-    this.themeMode = ThemeMode.dark,
+    this.themeMode = ThemeMode.light,
     this.colorSeed = 0,
   });
 

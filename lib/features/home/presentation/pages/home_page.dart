@@ -117,6 +117,7 @@ class HomePage extends StatelessWidget {
   }
 
   Wrap buildFeatures(BuildContext context) {
+    var iconSize = 48.0;
     return Wrap(
       spacing: 24,
       runSpacing: 24,
@@ -134,11 +135,12 @@ class HomePage extends StatelessWidget {
             ),
             icon: Icon(
               Icons.cable_sharp,
-              size: 48,
+              size: iconSize,
               color: Theme.of(context).colorScheme.primary,
             ),
             name: 'All CRUD Operations',
-            description: 'Full support for all CRUD (Create, Read, Update, Delete) operations on both Product and Category entities within the system.',
+            description:
+                'Full support for all CRUD (Create, Read, Update, Delete) operations on both Product and Category entities within the system.',
           ),
         ),
         FadeInDown(
@@ -151,7 +153,7 @@ class HomePage extends StatelessWidget {
             ),
             icon: Icon(
               Icons.text_snippet,
-              size: 48,
+              size: iconSize,
               color: Theme.of(context).colorScheme.primary,
             ),
             name: 'Pagination Feature',
@@ -169,7 +171,7 @@ class HomePage extends StatelessWidget {
             ),
             icon: Icon(
               Icons.security,
-              size: 48,
+              size: iconSize,
               color: Theme.of(context).colorScheme.primary,
             ),
             name: 'Auth with JWT',
@@ -186,7 +188,7 @@ class HomePage extends StatelessWidget {
             ),
             icon: Icon(
               Icons.api,
-              size: 48,
+              size: iconSize,
               color: Theme.of(context).colorScheme.primary,
             ),
             name: 'Rest API Feature',
@@ -204,7 +206,7 @@ class HomePage extends StatelessWidget {
             ),
             icon: Icon(
               Icons.image,
-              size: 48,
+              size: iconSize,
               color: Theme.of(context).colorScheme.primary,
             ),
             name: 'Products Images',
@@ -221,7 +223,7 @@ class HomePage extends StatelessWidget {
             ),
             icon: Icon(
               Icons.signpost_rounded,
-              size: 48,
+              size: iconSize,
               color: Theme.of(context).colorScheme.primary,
             ),
             name: "Postman and Jetbrains curL",
@@ -315,10 +317,10 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             const CustomFeatureDescriptionWidget(
-              smallTittle: 'Get a list of product',
-              tittle: 'List all the products',
-              description: 'This curL will allow you to list all the products in the fake store.',
-              features: ['List all the products in database', 'Provide a page and lot for implement pagination'],
+              smallTittle: 'Get a list of Categories',
+              tittle: 'List all the categories',
+              description: 'This curL will allow you to list all the categories in the fake store.',
+              features: ['List all the categories in database', 'Provide a page and size for implement pagination'],
               maxWidth: 500,
             ),
             const Expanded(child: SizedBox()),
@@ -333,14 +335,10 @@ class HomePage extends StatelessWidget {
                     text: '```'
                         '    '
                         '    ###\n'
-                        '    GET http://localhost:8080/product/get\n'
-                        '    Content-Type: application/json\n'
-                        '    \n'
-                        '    {\n'
-                        '       "page": 1,\n'
-                        '       "size": 10,\n'
-                        '       "filter": "name"\n'
-                        '    },\n'
+                        '    GET http://localhost:8080/category/getAll?\n'
+                        '                                        page=0&\n'
+                        '                                        size=10&\n'
+                        '                                        filter=any,\n'
                         '```',
                     textStyle: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -407,10 +405,14 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             const CustomFeatureDescriptionWidget(
-              smallTittle: 'Get a list of product',
-              tittle: 'List all the products',
-              description: 'This curL will allow you to list all the products in the fake store.',
-              features: ['List all the products in database', 'Provide a page and lot for implement pagination'],
+              smallTittle: 'Get a single of product',
+              tittle: 'List a product',
+              description: 'This curL will allow you to fetch a product from the fake store api.',
+              features: [
+                'Provide a product',
+                'You can select whether to order it based on the id or based on the name',
+                'You must provide at least one of the given options',
+              ],
               maxWidth: 500,
             ),
             const Expanded(child: SizedBox()),
@@ -425,14 +427,9 @@ class HomePage extends StatelessWidget {
                     text: '```'
                         '    '
                         '    ###\n'
-                        '    GET http://localhost:8080/product/get\n'
-                        '    Content-Type: application/json\n'
-                        '    \n'
-                        '    {\n'
-                        '       "page": 1,\n'
-                        '       "size": 10,\n'
-                        '       "filter": "name"\n'
-                        '    },\n'
+                        '    GET http://localhost:8080/product/get?\n'
+                        '                                      id=1&\n'
+                        '                                      title=any,\n'
                         '```',
                     textStyle: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -449,52 +446,50 @@ class HomePage extends StatelessWidget {
   }
 
   buildBanner(BuildContext context) {
-    return Stack(
+    return SizedBox(
+      height: 480,
+      child: Stack(
         children: [
           Image.asset(
             'assets/image-network.jpg',
             width: MediaQuery.of(context).size.width,
-            height: 380,
             fit: BoxFit.cover,
           ),
           const SizedBox(height: 80),
-          Padding(
-            padding: const EdgeInsets.only(top: 120),
-            child: Center(
-              child: DefaultTextStyle(
-                style: const TextStyle(
-                  fontSize: 80.0,
-                  fontFamily: 'Horizon',
-                ),
-                child: AnimatedTextKit(
-                  repeatForever: true,
-                  animatedTexts: [
-                    TyperAnimatedText(
-                      'FOR YOUR FRONT APK',
-                      speed: const Duration(milliseconds: 70),
-                      textStyle: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+          Center(
+            child: DefaultTextStyle(
+              style: const TextStyle(
+                fontSize: 80.0,
+                fontFamily: 'Horizon',
+              ),
+              child: AnimatedTextKit(
+                repeatForever: true,
+                animatedTexts: [
+                  TyperAnimatedText(
+                    'FOR YOUR FRONT APK',
+                    speed: const Duration(milliseconds: 70),
+                    textStyle: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
-                    TyperAnimatedText(
-                      'MOCK YOUR DATA',
-                      speed: const Duration(milliseconds: 70),
-                      textStyle: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  ),
+                  TyperAnimatedText(
+                    'MOCK YOUR DATA',
+                    speed: const Duration(milliseconds: 70),
+                    textStyle: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
-                    TyperAnimatedText(
-                      'TEST YOUR FRONT',
-                      speed: const Duration(milliseconds: 70),
-                      textStyle: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  ),
+                  TyperAnimatedText(
+                    'TEST YOUR FRONT',
+                    speed: const Duration(milliseconds: 70),
+                    textStyle: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -502,7 +497,7 @@ class HomePage extends StatelessWidget {
             height: 24,
           ),
           Positioned(
-            bottom: 24,
+            bottom: 65,
             left: MediaQuery.of(context).size.width / 2 - 120,
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -514,7 +509,8 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ],
-      );
+      ),
+    );
   }
 }
 
