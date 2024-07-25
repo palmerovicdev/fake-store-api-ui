@@ -115,12 +115,12 @@ class _TextCodeBlockWidgetState extends State<TextCodeBlockWidget> {
                             SnackBar(
                               content: Center(
                                 child: Text(
-                                  '',
+                                  'Your code has been copied to your clipboard',
                                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Theme.of(context).colorScheme.onSecondary
-                                  ),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Theme.of(context).colorScheme.onSecondary,
+                                      ),
                                 ),
                               ),
                               duration: const Duration(milliseconds: 500),

@@ -12,12 +12,14 @@ class BrightnessSelectorWidget extends StatelessWidget {
       children: [
         IconButton(
           icon: const Icon(Icons.light_mode),
+          iconSize: 28,
           onPressed: () {
             context.read<ThemeSelectorCubit>().changeTheme(ThemeMode.light);
           },
         ),
         IconButton(
           icon: const Icon(Icons.dark_mode),
+          iconSize: 28,
           onPressed: () {
             context.read<ThemeSelectorCubit>().changeTheme(ThemeMode.dark);
           },

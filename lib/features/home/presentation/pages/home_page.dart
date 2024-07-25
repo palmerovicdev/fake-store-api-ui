@@ -19,12 +19,23 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Padding(
-          padding: EdgeInsets.only(left: 32.0),
-          child: Icon(
-            Icons.stream_outlined,
-            size: 32,
-          ),
+        leadingWidth: 300,
+        leading: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 32.0),
+              child: Icon(
+                Icons.stream_outlined,
+                size: 36,
+              ),
+            ),
+            SizedBox(width: 8),
+            TittleText(
+              text: 'Fake Store API',
+              size: 32,
+            ),
+          ],
         ),
         actions: const [
           Padding(
@@ -62,11 +73,11 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 50),
                 ...buildExamples(context),
                 const SizedBox(height: 70),
-                const CustomDivider(),
+                CustomDivider(width: MediaQuery.of(context).size.width - 60),
                 const SizedBox(height: 16),
-                const SizedBox(
-                  width: 1300,
-                  child: Row(
+                SizedBox(
+                  width: MediaQuery.of(context).size.width - 60,
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
@@ -459,7 +470,7 @@ class HomePage extends StatelessWidget {
           Center(
             child: DefaultTextStyle(
               style: const TextStyle(
-                fontSize: 80.0,
+                fontSize: 64.0,
                 fontFamily: 'Horizon',
               ),
               child: AnimatedTextKit(
@@ -517,16 +528,18 @@ class HomePage extends StatelessWidget {
 class CustomDivider extends StatelessWidget {
   const CustomDivider({
     super.key,
+    this.width = 1300,
   });
+
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: 1300,
+        width: width,
         child: Divider(
           thickness: 1,
-          indent: 10,
           endIndent: 0,
           color: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
         ),
