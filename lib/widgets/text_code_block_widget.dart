@@ -208,7 +208,7 @@ class _TextCodeBlockWidgetState extends State<TextCodeBlockWidget> {
       normalText,
       style: widget.textStyle ??
           Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: Theme.of(context).colorScheme.onBackground,
+                color: Theme.of(context).colorScheme.onSurface,
                 fontSize: 14,
               ),
     );

@@ -42,7 +42,7 @@ class _CustomFeatureCardState extends State<CustomFeatureCard> {
   @override
   Widget build(BuildContext context) {
     var themeData = Theme.of(context);
-    var background = widget.background ?? themeData.colorScheme.background;
+    var background = widget.background ?? themeData.colorScheme.surface;
     return GestureDetector(
       onTap: widget.onTap,
       child: MouseRegion(

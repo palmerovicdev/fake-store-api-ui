@@ -45,7 +45,7 @@ class CustomFeatureDescriptionWidget extends StatelessWidget {
           child: Text(
             description,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
+                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                   fontSize: 22,
                 ),
           ),
@@ -71,7 +71,7 @@ class CustomFeatureDescriptionWidget extends StatelessWidget {
                           child: Text(
                             feature,
                             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
+                                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                                   fontSize: 22,
                                 ),
                           ),

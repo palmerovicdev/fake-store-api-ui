@@ -72,7 +72,7 @@ class _CustomSearchState extends State<CustomSearch> {
               borderRadius: BorderRadius.circular(16),
               borderSide: BorderSide(
                 width: 2,
-                color: _isHover ? colorScheme.primary : colorScheme.background,
+                color: _isHover ? colorScheme.primary : colorScheme.surface,
               ),
             ),
             prefixIcon: Padding(
