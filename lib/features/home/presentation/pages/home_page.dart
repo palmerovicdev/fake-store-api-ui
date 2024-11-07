@@ -251,18 +251,18 @@ class HomePage extends StatelessWidget {
     return FilledButton(
       onPressed: () => launchUrlString('http://217.15.171.136:3001/swagger-ui/swagger-ui/index.html'),
       style: ButtonStyle(
-        padding: MaterialStateProperty.all(
+        padding: WidgetStateProperty.all(
           const EdgeInsets.symmetric(
             horizontal: 24,
             vertical: 12,
           ),
         ),
-        shape: MaterialStateProperty.all(
+        shape: WidgetStateProperty.all(
           const RoundedRectangleBorder(
             borderRadius: BorderRadius.zero,
           ),
         ),
-        backgroundColor: MaterialStateProperty.all(
+        backgroundColor: WidgetStateProperty.all(
           Theme.of(context).colorScheme.secondary,
         ),
       ),
@@ -286,13 +286,13 @@ class HomePage extends StatelessWidget {
     return FilledButton(
       onPressed: () {},
       style: ButtonStyle(
-        padding: MaterialStateProperty.all(
+        padding: WidgetStateProperty.all(
           const EdgeInsets.symmetric(
             horizontal: 24,
             vertical: 12,
           ),
         ),
-        shape: MaterialStateProperty.all(
+        shape: WidgetStateProperty.all(
           const RoundedRectangleBorder(
             borderRadius: BorderRadius.zero,
           ),
